@@ -145,6 +145,9 @@ function _s_scripts() {
 
 	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
+	$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
+	wp_enqueue_script( '_s-application', plugins_url( 'build/index.js', __FILE__ ), $asset_file['dependencies'], $asset_file['version'], true );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
